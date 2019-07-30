@@ -12,6 +12,6 @@ RUN adduser -S -D -H -h /app gkc
 USER gkc
 COPY --from=builder /go/bin/go-kube-command /app/
 WORKDIR /app
-ENTRYPOINT [ "executable" ] ["./go-kube-command"]
+ENTRYPOINT ["./go-kube-command"]
 
  
