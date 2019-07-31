@@ -2,6 +2,7 @@
 Passing kubernetes secrets through a go app command line
 
 ~~~~
+# kubectl create secret generic my-super-secret-secret --from-literal=my-first-name=Chris --from-literal=my-last-name=Gianelle
 # kubectl apply -f gokubecommand.yaml
 # kubectl get pods
 NAME                                    READY   STATUS    RESTARTS   AGE
