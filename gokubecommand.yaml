@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gokubecmd-deployment
+  labels:
+    version: 0.0.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gokubecommand
+  template:
+    metadata:
+      labels:
+        app: gokubecommand
+    spec:
+      containers:
+      - name: gokubecommand
+        image: cgianelle1976/gokubecommand:arm32-0.0.1
+        ports:
+        - containerPort: 8081
+        env:
+          - name: SECRET_FIRST_NAME
+            valueFrom:
+              secretKeyRef:
+                name:  my-super-secret-secret
+                key:  my-first-name
+          - name: SECRET_LAST_NAME
+            valueFrom:
+              secretKeyRef:
+                name: my-super-secret-secret
+                key: my-last-name
+        args:
+          - '-application.firstName=$(SECRET_FIRST_NAME)'
+          - '-application.lastName=$(SECRET_LAST_NAME)'
+                  
